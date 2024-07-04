@@ -1,0 +1,480 @@
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background: url('imgs/keyboard.jpg') no-repeat center center/cover;
+    background-size: cover;
+    color: #fff;
+    padding-top: 100px;
+    min-height: 400px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 4rem;
+    font-weight: 900;
+}
+
+header p {
+    font-size: 2rem;
+    font-style: italic;
+}
+
+section {
+    padding: 40px 0;
+}
+
+.about,
+.projects,
+.contact {
+    text-align: center;
+}
+
+.projects .project-item {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.projects .project-item h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.projects .project-item p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.projects .project-item a {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.projects .project-item a:hover {
+    background-color: #555;
+}
+
+.contact form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.contact input,
+.contact textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Navbar */
+.navbar {
+    background: #333;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+}
+
+.navbar ul li {
+    margin: 0 20px;
+    position: relative;
+}
+
+.navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    transition: all 0.3s ease;
+    /* Smooth transition for anchor links */
+}
+
+.navbar ul li a:hover,
+.navbar ul li a:focus {
+    background: #555;
+    border-radius: 5px;
+}
+
+.navbar .dropdown:hover .dropdown-content,
+.navbar .dropdown:focus .dropdown-content {
+    display: block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #575757;
+}
+
+/* About Section */
+.about {
+    padding: 50px 0;
+    background: #fff;
+    text-align: center;
+}
+
+.about h2 {
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+.about p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* Projects */
+
+.projects {
+    padding: 50px 0;
+    background: #f4f4f4;
+    text-align: center;
+}
+
+.projects h2 {
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+.project-carousel {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.project-carousel-inner {
+    display: flex;
+}
+
+.project-item {
+    min-width: 300px;
+    max-width: 300px;
+    background: #fff;
+    margin: 0 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: justify;
+    padding: 20px;
+    transition: transform 0.5s;
+    display: flex;
+    /* Added */
+    flex-direction: column;
+    /* Added */
+    justify-content: space-between;
+    /* Added */
+}
+
+.project-item h3 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.project-item hr {
+    margin: 10px 0;
+}
+
+.project-item p {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.project-item a {
+    color: #fff;
+    text-decoration: none;
+    background-color: #007bff;
+    /* Added background color for visibility */
+    text-align: center;
+    /* Center text */
+    padding: 10px 20px;
+    /* Added padding for better appearance */
+    border-radius: 5px;
+    /* Rounded corners */
+    margin: 10px 0;
+    /* Centers the anchor tag horizontally */
+}
+
+
+.project-item:hover {
+    transform: scale(1.05);
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.carousel-controls button i {
+    font-size: 22px;
+}
+
+.carousel-controls button {
+    background-color: #222;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.carousel-controls button:hover {
+    background-color: #333;
+    transform: scale(1.1);
+}
+
+.carousel-controls button:active {
+    transform: scale(1.05);
+}
+
+
+/* Contact Section */
+.contact {
+    padding: 50px 0;
+    background: #fff;
+    text-align: center;
+}
+
+.contact h2 {
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+.contact p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    /* Increase margin bottom for more space */
+}
+
+.contact a.email-link {
+    display: inline-block;
+    /* Ensure it behaves like a block element with padding and margin */
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    background: #222;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    /* Add margin top for spacing */
+}
+
+.contact a.email-link:hover {
+    background: #333;
+}
+
+/* Footer */
+footer {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    padding: 30px 0;
+}
+
+footer .cont{
+    display: flex;
+    justify-content: space-around;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    footer {
+        font-size: 14px; /* Decrease font size for smaller screens */
+    }
+    footer .cont {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        padding: 20px;
+    }
+}
+
+/* Media query for very small screens, e.g., 500px */
+@media (max-width: 500px) {
+    footer {
+        font-size: 12px; /* Further decrease font size for very small screens */
+    }
+    footer .cont {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+}
+
+/* Smooth scrolling behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Media Queries for responsiveness */
+
+/* For devices with a max width of 1200px */
+@media (max-width: 1200px) {
+    .container {
+        width: 90%;
+    }
+}
+
+/* For tablets (max width 768px) */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 3rem;
+    }
+
+    header p {
+        font-size: 1.5rem;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar ul li {
+        margin: 10px 0;
+    }
+
+    .project-carousel-inner {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .project-item {
+        min-width: 90%;
+        max-width: 90%;
+        margin: 10px 0;
+    }
+
+    .carousel-controls button {
+        display: none;
+        /* Hide buttons on tablets */
+    }
+}
+
+/* For mobile phones (max width 480px) */
+@media (max-width: 480px) {
+    header {
+        padding-top: 50px;
+        min-height: 300px;
+    }
+
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .navbar .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar ul li {
+        margin: 5px 0;
+    }
+
+    section {
+        padding: 20px 0;
+    }
+
+    .projects .project-item {
+        min-width: 100%;
+        max-width: 100%;
+    }
+
+    .carousel-controls button {
+        display: none;
+        /* Hide buttons on mobiles */
+    }
+
+    .contact h2 {
+        font-size: 2rem;
+    }
+
+    .contact p,
+    .contact a.email-link {
+        font-size: 1rem;
+    }
+
+    .carousel-controls button {
+        padding: 6px 12px;
+    }
+}

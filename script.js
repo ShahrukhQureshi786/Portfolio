@@ -5,6 +5,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const numVisibleProjects = 4; // Number of projects visible at a time
     let currentIndex = 0; // Track current position of projects
 
+    // Variables for touch events
+    let startX = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let isDragging = false;
+    let animationID;
+
     // Function to calculate total width of all project items
     function calculateTotalWidth() {
         const totalWidth = projectItems.length * projectItemWidth;
@@ -48,4 +55,48 @@ document.addEventListener('DOMContentLoaded', function() {
             showProjects();
         }
     });
+
+    // Functions to handle touch events
+    function touchStart(index) {
+        return function(event) {
+            startX = event.touches[0].clientX;
+            isDragging = true;
+            animationID = requestAnimationFrame(animation);
+        }
+    }
+
+    function touchMove(event) {
+        if (isDragging) {
+            const currentPosition = event.touches[0].clientX;
+            currentTranslate = prevTranslate + currentPosition - startX;
+        }
+    }
+
+    function touchEnd() {
+        cancelAnimationFrame(animationID);
+        isDragging = false;
+
+        const movedBy = currentTranslate - prevTranslate;
+
+        if (movedBy < -100 && currentIndex < calculateMaxIndex()) {
+            currentIndex++;
+        }
+
+        if (movedBy > 100 && currentIndex > 0) {
+            currentIndex--;
+        }
+
+        showProjects();
+        prevTranslate = currentIndex * -projectItemWidth;
+    }
+
+    function animation() {
+        projectCarousel.style.transform = `translateX(${currentTranslate}px)`;
+        if (isDragging) requestAnimationFrame(animation);
+    }
+
+    // Add event listeners for touch events
+    projectCarousel.addEventListener('touchstart', touchStart(currentIndex));
+    projectCarousel.addEventListener('touchmove', touchMove);
+    projectCarousel.addEventListener('touchend', touchEnd);
 });

@@ -5,13 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const numVisibleProjects = 4; // Number of projects visible at a time
     let currentIndex = 0; // Track current position of projects
 
-    // Variables for touch events
-    let startX = 0;
-    let currentTranslate = 0;
-    let prevTranslate = 0;
-    let isDragging = false;
-    let animationID;
-
     // Function to calculate total width of all project items
     function calculateTotalWidth() {
         const totalWidth = projectItems.length * projectItemWidth;
@@ -56,48 +49,46 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Functions to handle touch events
-    function touchStart(index) {
-        return function(event) {
-            if (window.innerWidth >= 500) return; // Disable touch for screens 500px and wider
+    // Touch event variables
+    let startX = 0;
+    let endX = 0;
+
+    // Function to handle touch start
+    function handleTouchStart(event) {
+        if (window.innerWidth > 500) {
             startX = event.touches[0].clientX;
-            isDragging = true;
-            animationID = requestAnimationFrame(animation);
         }
     }
 
-    function touchMove(event) {
-        if (window.innerWidth >= 500 || !isDragging) return; // Disable touch for screens 500px and wider
-        const currentPosition = event.touches[0].clientX;
-        currentTranslate = prevTranslate + currentPosition - startX;
-    }
-
-    function touchEnd() {
-        if (window.innerWidth >= 500) return; // Disable touch for screens 500px and wider
-        cancelAnimationFrame(animationID);
-        isDragging = false;
-
-        const movedBy = currentTranslate - prevTranslate;
-
-        if (movedBy < -100 && currentIndex < calculateMaxIndex()) {
-            currentIndex++;
+    // Function to handle touch move
+    function handleTouchMove(event) {
+        if (window.innerWidth > 500) {
+            endX = event.touches[0].clientX;
         }
+    }
 
-        if (movedBy > 100 && currentIndex > 0) {
-            currentIndex--;
+    // Function to handle touch end
+    function handleTouchEnd() {
+        if (window.innerWidth > 500) {
+            if (startX > endX) {
+                // Swiped left
+                const maxIndex = calculateMaxIndex();
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                    showProjects();
+                }
+            } else if (startX < endX) {
+                // Swiped right
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    showProjects();
+                }
+            }
         }
-
-        showProjects();
-        prevTranslate = currentIndex * -projectItemWidth;
     }
 
-    function animation() {
-        projectCarousel.style.transform = `translateX(${currentTranslate}px)`;
-        if (isDragging) requestAnimationFrame(animation);
-    }
-
-    // Add event listeners for touch events
-    projectCarousel.addEventListener('touchstart', touchStart(currentIndex));
-    projectCarousel.addEventListener('touchmove', touchMove);
-    projectCarousel.addEventListener('touchend', touchEnd);
+    // Add touch event listeners
+    projectCarousel.addEventListener('touchstart', handleTouchStart);
+    projectCarousel.addEventListener('touchmove', handleTouchMove);
+    projectCarousel.addEventListener('touchend', handleTouchEnd);
 });

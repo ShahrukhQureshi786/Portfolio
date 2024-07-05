@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Functions to handle touch events
     function touchStart(index) {
         return function(event) {
+            if (window.innerWidth >= 500) return; // Disable touch for screens 500px and wider
             startX = event.touches[0].clientX;
             isDragging = true;
             animationID = requestAnimationFrame(animation);
@@ -66,13 +67,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function touchMove(event) {
-        if (isDragging) {
-            const currentPosition = event.touches[0].clientX;
-            currentTranslate = prevTranslate + currentPosition - startX;
-        }
+        if (window.innerWidth >= 500 || !isDragging) return; // Disable touch for screens 500px and wider
+        const currentPosition = event.touches[0].clientX;
+        currentTranslate = prevTranslate + currentPosition - startX;
     }
 
     function touchEnd() {
+        if (window.innerWidth >= 500) return; // Disable touch for screens 500px and wider
         cancelAnimationFrame(animationID);
         isDragging = false;
 
